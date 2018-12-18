@@ -1,0 +1,164 @@
+page.unauthorized=401 Unauthorized
+page.badRequest=400 Bad Request
+page.index.title=Main page
+
+navbar.action.login=Login
+navbar.action.logout=Logout
+navbar.action.boards=Boards
+navbar.action.Teams=Teams
+navbar.action.addNewBoard=Add new board
+
+page.validation.error=Something went wrong!
+page.validation.unauthorized=You are unauthorized!
+page.validation.onlyAlphanumeric=The only allowed chars are: letters, numbers, and minus!
+page.validation.onlyAlphanumericAndSpace=The only allowed chars are: letters, numbers, space, and minus!
+page.validation.noSuchBoard=No such board!
+
+page.login.title=Log in
+page.login.header=Log in to TrAAllo
+page.login.label.username=Username
+page.login.label.password=Password
+page.login.button.submit=Log In
+page.login.alternative=i want new one TrAAllo account
+page.login.validate.authenticateError=Invalid username or password!
+
+page.signup.title=Sign up
+page.signup.header=Create an TrAAllo Account
+page.signup.error=Something went wrong!
+page.signup.label.username=Username
+page.signup.label.password=Password
+page.signup.button.submit=Sign up
+page.signup.alternative=i have a TrAAllo account
+page.signup.validate.alreadyExist=User with given username already exists!
+
+page.welcome.title=Welcome
+page.welcome.msg=Successfully registered. You are welcome!
+page.welcome.start=You can log in and start using TrAAllo. Click
+page.welcome.go=GO!
+
+page.team.title=Teams
+page.team.edit=[Edit team name]
+page.team.delete=[Delete team]
+page.team.member.delete=[del member]
+page.tem.add.teamName.placeholder=next team name
+page.tem.add.teamName.label=team name
+page.team.add.member.username.placeholder=next team member
+page.team.add.member.username.label=team member
+page.team.add.submit.value=Add team member
+page.team.crud.label.teamName=Team name
+page.team.crud.label.value=Team name
+page.team.validate.alreadyExist=Team with given name already exist!
+page.team.validate.suchTeamDoesNotExist=
+page.team.validate.suchUsernameDoesNotExist=User with given username is not registered.
+page.team.validate.alreadyMember=User with given username is already member of this team.
+page.team.validate.cannotDeleteSelf=You cannot delete self. Ask other member for it.
+page.team.notFound=Team not found
+page.team.memberNotFound=Team member not found
+
+page.board.notFound=Board not found
+
+modal.board.crud.header.new=New board
+modal.board.crud.header.edit=Edit board
+modal.board.crud.label.name=Name
+modal.board.crud.label.private=Private
+modal.board.crud.label.public=Public
+modal.board.crud.label.newName=New name
+
+modal.board.crud.button.add=Add
+modal.board.crud.button.cancel=Cancel
+modal.board.crud.confirm=Confirm
+
+modal.board.validate.notUnique=You are already have board with given name.
+
+page.board.bList.add.label.name=List name
+page.board.bList.add=Add a list...
+page.board.bList.add.button.submit=Save
+page.board.bList.add.validate.notUnique=You are already have list with given name in this board.
+
+page.board.bList.edit.label.newName=List new name
+page.board.bList.edit.button.submit=Rename
+
+page.board.card.add=Add a card...
+page.board.card.add.label.name=Card name
+page.board.card.add.button.submit=Save
+page.board.card.edit.button.submit=Rename
+
+card.modal.close.button=Close
+card.modal.member.assigned=Assigned to
+card.modal.member.assign=Assign to
+card.modal.member.unassign=Unassign
+
+card.modal.comments.header=Comments
+card.modal.comments.writeComment=Write a comment...
+card.modal.comments.submit=Add comment
+card.modal.comments.not.found=Comment not found
+card.modal.comments.save.button=Save
+card.modal.comments.delete.button=Delete
+card.modal.comments.edit.button=Edit
+
+card.modal.attachment.header=Attachments
+card.modal.attachment.file=Select file
+card.modal.attachment.submit=Add selected file
+card.modal.attachment.not.found=Attachment not found
+
+history.with.name=with name
+history.created=created
+history.in.bList=in BList
+history.renamed=renamed to
+history.deleted=deleted
+history.type.changed=changed
+history.from=from
+history.to=to
+history.type=type
+
+constraint.required=Required
+constraint.min=Minimum value: {0}
+constraint.max=Maximum value: {0}
+constraint.minLength=Minimum length: {0}
+constraint.maxLength=Maximum length: {0}
+constraint.email=Email
+
+format.date=Date (''{0}'')
+format.numeric=Numeric
+format.real=Real
+format.uuid=UUID
+
+error.invalid=Invalid value
+error.invalid.java.util.Date=Invalid date value
+error.required=This field is required
+error.number=Numeric value expected
+error.real=Real number value expected
+error.real.precision=Real number value with no more than {0} digit(s) including {1} decimal(s) expected
+error.min=Must be greater or equal to {0}
+error.min.strict=Must be strictly greater than {0}
+error.max=Must be less or equal to {0}
+error.max.strict=Must be strictly less than {0}
+error.minLength=Minimum length is {0}
+error.maxLength=Maximum length is {0}
+error.email=Valid email required
+error.pattern=Must satisfy {0}
+error.date=Valid date required
+error.uuid=Valid UUID required
+
+error.expected.date=Date value expected
+error.expected.date.isoformat=Iso date value expected
+error.expected.time=Time value expected
+error.expected.jodadate.format=Joda date value expected
+error.expected.jodatime.format=Joda time value expected
+error.expected.jsarray=Array value expected
+error.expected.jsboolean=Boolean value expected
+error.expected.jsnumber=Number value expected
+error.expected.jsobject=Object value expected
+error.expected.jsstring=String value expected
+error.expected.jsnumberorjsstring=String or number expected
+error.expected.keypathnode=Node value expected
+error.expected.uuid=UUID value expected
+error.expected.validenumvalue=Valid enumeration value expected
+error.expected.enumstring=String value expected
+
+error.path.empty=Empty path
+error.path.missing=Missing path
+error.path.result.multiple=Multiple results for the given path
+
+error.cannot.upload.file=Internal error, file upload failed
+error.cannot.download.file=Internal error, file download failed
