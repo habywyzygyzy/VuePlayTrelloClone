@@ -270,4 +270,6 @@ project/plugins/project/
 .lib/
 
 
-# End of https://www.gitignore.io/api/vue,java,maven,vuejs,gradle,intellij,playframework
+# End of https://www.gitignore.io/api/vue,java,maven,vuejs,gradle,intellij,playframework,sbt,node,scala
+
+.idea
