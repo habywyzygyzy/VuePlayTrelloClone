@@ -21,3 +21,4 @@ Assets / VueKeys.vuefy / VueKeys.webpackBinary := {
   }
 }
 Assets / VueKeys.vuefy / VueKeys.webpackConfig := (new File(".") / "webpack.config.js").getAbsolutePath
+
