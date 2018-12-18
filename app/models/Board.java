@@ -1,17 +1,17 @@
 package models;
 
-import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OrderBy;
 import java.util.List;
 import java.util.Objects;
+import io.ebean.*;
 
 @Entity
 public class Board extends Model {
 
-    public static final Model.Finder<Long, Board> find = new Model.Finder<>(Board.class);
+    public static final Finder<Long, Board> find = new Finder<>(Board.class);
 
     @Id public Long id;
     @Column(nullable = false) public String name;

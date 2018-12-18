@@ -1,29 +1,20 @@
 package controllers;
 
 import models.Board;
-import models.HistoryItem;
-import models.HistoryItem.Action;
-import models.HistoryItem.Element;
-import models.Team;
 import models.User;
+import play.api.data.Form;
+import play.api.data.validation.Constraints;
 import play.data.Form;
 import play.data.validation.Constraints;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.board;
 
 public class BoardController extends Controller {
 
-    @Security.Authenticated(LoggedInAuthenticator.class)
     public static Result add() {
         Form<NewBoard> boardForm = Form.form(NewBoard.class).bindFromRequest();
-        Team team = null;
-
-        if(boardForm.get().teamId != null){
-            team = Team.find.byId(boardForm.get().teamId);
-        }
 
         Board board = Board.create(User.loggedInUser(), boardForm.get().name, boardForm.get().typeCode, team);
         return ok();
