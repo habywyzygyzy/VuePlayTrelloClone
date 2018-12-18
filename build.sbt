@@ -41,6 +41,7 @@ testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
 libraryDependencies += "de.svenkubiak" % "jBCrypt" % "0.4"
 libraryDependencies += "io.ebean" % "ebean" % "4.0.1"
+libraryDependencies += javaForms
 
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.

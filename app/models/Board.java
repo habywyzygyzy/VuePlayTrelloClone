@@ -22,7 +22,7 @@ public class Board extends Model {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "board")
     @OrderBy("sortPosition ASC, id ASC")
     @JsonIgnore
-    public List<List> Lists;
+    public List<BoardList> lists;
 
     protected Board() {
     }

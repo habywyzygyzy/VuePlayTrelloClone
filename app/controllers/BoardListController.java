@@ -1,29 +1,23 @@
 package controllers;
 
-import com.avaje.ebean.Ebean;
-import models.List;
+import models.BoardList;
 import models.Board;
 import models.Card;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import play.data.Form;
 import play.data.validation.Constraints;
 import play.i18n.Messages;
-import play.libs.F;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Security;
+import io.ebean.*;
 
-import java.util.stream.Stream;
-
-public class ListController extends Controller {
+public class BoardListController extends Controller {
 
     public static Result add() {
         Form<NewList> boardForm = Form.form(NewList.class).bindFromRequest();
 
         NewList newList = boardForm.get();
         Board board = Board.find.byId(newList.boardID);
-        List List = List.create(board, newList.name);
+        BoardList list = BoardList.create(board, newList.name);
 
         return ok();
     }
@@ -35,7 +29,7 @@ public class ListController extends Controller {
         }
 
         Long ListID = Long.parseLong(ListIDString);
-        List ListObj = List.find.byId(ListID);
+        BoardList ListObj = BoardList.find.byId(ListID);
 
         if (ListObj == null) {
             return badRequest(Messages.get("page.board.notFound"));

@@ -4,19 +4,16 @@ import models.Board;
 import models.User;
 import play.api.data.Form;
 import play.api.data.validation.Constraints;
-import play.data.Form;
-import play.data.validation.Constraints;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Security;
 
 public class BoardController extends Controller {
 
     public static Result add() {
         Form<NewBoard> boardForm = Form.form(NewBoard.class).bindFromRequest();
 
-        Board board = Board.create(User.loggedInUser(), boardForm.get().name, boardForm.get().typeCode, team);
+        Board board = Board.create(User.loggedInUser(), boardForm.get().name);
         return ok();
     }
 

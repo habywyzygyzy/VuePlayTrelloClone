@@ -2,11 +2,8 @@ package controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Security;
-import utils.authenticators.LoggedInAuthenticator;
 import views.html.index;
 
-@Security.Authenticated(LoggedInAuthenticator.class)
 public class Application extends Controller {
 
     public static Result index() {

@@ -1,12 +1,11 @@
 package models;
 
 
-import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
+import io.ebean.*;
 
 @Entity
 public class Card extends Model {
@@ -19,12 +18,16 @@ public class Card extends Model {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @Column(nullable = false) public List list;
+    @Column(nullable = false) public BoardList list;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @Column(nullable = true) public User cardMember;
 
     protected Card() {
     }
 
-    public static Card create(BList list, String name) {
+    public static Card create(BoardList list, String name) {
         Card maxSortCard = Card.find.orderBy("sortPosition DESC").setMaxRows(1).findUnique();
         long nextSortPos = (maxSortCard != null) ? (maxSortCard.sortPosition + 1) : 1;
 

@@ -1,22 +1,21 @@
 package models;
 
-import com.avaje.ebean.Model;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.OrderBy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import io.ebean.*;
 
 import static play.mvc.Controller.session;
 
 @Entity
 public class User extends Model {
 
-    public static final Model.Finder<Long, User> find = new Model.Finder<>(User.class);
+    public static final Finder<Long, User> find = new Finder<>(User.class);
 
     @Id public Long id;
     @Column(nullable = false) public String username;
