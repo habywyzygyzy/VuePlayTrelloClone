@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class List extends Model {
+public class BoardList extends Model {
 
     public static final Model.Finder<Long, List> find = new Model.Finder<>(List.class);
 
@@ -24,27 +24,27 @@ public class List extends Model {
     @JsonIgnore
     public List<Card> cards;
 
-    protected List() {
+    protected BoardList() {
     }
 
     public static List create(Board board, String name) {
         List maxSortList = List.find.orderBy("sortPosition DESC").setMaxRows(1).findUnique();
         long nextSortPos = (maxSortList != null) ? (maxSortList.sortPosition + 1L) : 1L;
 
-        List List = new List();
-        List.name = name;
-        List.board = board;
-        List.sortPosition = nextSortPos;
-        List.save();
+        BoardList list = new BoardList();
+        list.name = name;
+        list.board = board;
+        list.sortPosition = nextSortPos;
+        list.save();
 
-        return List;
+        return list;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        List List = (List) o;
+        BoardList list = (BoardList) o;
         return Objects.equals(id, List.id);
     }
 
