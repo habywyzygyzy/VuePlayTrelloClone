@@ -1,14 +1,14 @@
 package models;
 
+import io.ebean.Finder;
+import io.ebean.Model;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
-import javax.persistence.OrderBy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import io.ebean.*;
 
 import static play.mvc.Controller.session;
 
@@ -42,7 +42,7 @@ public class User extends Model {
     }
 
     public static boolean authenticate(String username, String password) {
-        User user = find.where().eq("username", username).findUnique();
+        User user = find.query().where().eq("username", username).findOne();
         return (user != null) && BCrypt.checkpw(password, user.password);
     }
 
@@ -60,7 +60,7 @@ public class User extends Model {
     }
 
     public List<Board> getAllBoards(){
-        List<Board> allBoards = teams.stream().flatMap(x -> x.boards.stream()).collect(Collectors.toList());
+        List<Board> allBoards = null;
         allBoards.addAll(boards);
         List<Board> allBoarsdWithoutDuplication = allBoards.stream().distinct().collect(Collectors.toList());
         return allBoarsdWithoutDuplication;

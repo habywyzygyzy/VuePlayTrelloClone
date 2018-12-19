@@ -2,16 +2,19 @@ package controllers;
 
 import models.Board;
 import models.User;
-import play.api.data.Form;
-import play.api.data.validation.Constraints;
+import play.data.Form;
+import play.data.FormFactory;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import static play.data.validation.Constraints.*;
+
 public class BoardController extends Controller {
 
     public static Result add() {
-        Form<NewBoard> boardForm = Form.form(NewBoard.class).bindFromRequest();
+        FormFactory formFactory = null;
+        Form<NewBoard> boardForm = formFactory.form(NewBoard.class).bindFromRequest();
 
         Board board = Board.create(User.loggedInUser(), boardForm.get().name);
         return ok();
@@ -28,7 +31,8 @@ public class BoardController extends Controller {
     }
 
     public static Result delete() {
-        String boardIDString = Form.form().bindFromRequest().get("boardID");
+        FormFactory formFactory = null;
+        String boardIDString = formFactory.form().bindFromRequest().get("boardID");
 
         Long boardId = Long.parseLong(boardIDString);
         Board boardObj = Board.find.byId(boardId);
@@ -42,10 +46,10 @@ public class BoardController extends Controller {
     }
 
     public static class NewBoard {
-        @Constraints.Required
-        @Constraints.MinLength(1)
-        @Constraints.MaxLength(200)
-        @Constraints.Pattern(value = "^[A-Za-z0-9- ]+$", message = "page.validation.onlyAlphanumericAndSpace")
+        @Required
+        @MinLength(1)
+        @MaxLength(200)
+        @Pattern(value = "^[A-Za-z0-9- ]+$", message = "page.validation.onlyAlphanumericAndSpace")
         public String name;
     }
 }

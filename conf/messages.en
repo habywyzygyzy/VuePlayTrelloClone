@@ -15,25 +15,25 @@ page.validation.onlyAlphanumericAndSpace=The only allowed chars are: letters, nu
 page.validation.noSuchBoard=No such board!
 
 page.login.title=Log in
-page.login.header=Log in to TrAAllo
+page.login.header=Log in to VuePlayTrelloClone
 page.login.label.username=Username
 page.login.label.password=Password
 page.login.button.submit=Log In
-page.login.alternative=i want new one TrAAllo account
+page.login.alternative=i want new one VuePlayTrelloClone account
 page.login.validate.authenticateError=Invalid username or password!
 
 page.signup.title=Sign up
-page.signup.header=Create an TrAAllo Account
+page.signup.header=Create an VuePlayTrelloClone Account
 page.signup.error=Something went wrong!
 page.signup.label.username=Username
 page.signup.label.password=Password
 page.signup.button.submit=Sign up
-page.signup.alternative=i have a TrAAllo account
+page.signup.alternative=i have a VuePlayTrelloClone account
 page.signup.validate.alreadyExist=User with given username already exists!
 
 page.welcome.title=Welcome
 page.welcome.msg=Successfully registered. You are welcome!
-page.welcome.start=You can log in and start using TrAAllo. Click
+page.welcome.start=You can log in and start using VuePlayTrelloClone. Click
 page.welcome.go=GO!
 
 page.team.title=Teams
@@ -103,7 +103,7 @@ card.modal.attachment.not.found=Attachment not found
 
 history.with.name=with name
 history.created=created
-history.in.bList=in BList
+history.in.bList=in BoardList
 history.renamed=renamed to
 history.deleted=deleted
 history.type.changed=changed

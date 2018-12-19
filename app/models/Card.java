@@ -2,10 +2,11 @@ package models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.ebean.Finder;
+import io.ebean.Model;
 
 import javax.persistence.*;
 import java.util.Objects;
-import io.ebean.*;
 
 @Entity
 public class Card extends Model {
@@ -28,7 +29,7 @@ public class Card extends Model {
     }
 
     public static Card create(BoardList list, String name) {
-        Card maxSortCard = Card.find.orderBy("sortPosition DESC").setMaxRows(1).findUnique();
+        Card maxSortCard = Card.find.query().orderBy("sortPosition DESC").setMaxRows(1).findOne();
         long nextSortPos = (maxSortCard != null) ? (maxSortCard.sortPosition + 1) : 1;
 
         Card card = new Card();

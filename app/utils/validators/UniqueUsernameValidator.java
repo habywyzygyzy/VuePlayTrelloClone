@@ -9,7 +9,7 @@ public class UniqueUsernameValidator extends Constraints.Validator<String> {
 
     @Override
     public boolean isValid(String username) {
-        int usernameRowCount = User.find.where().eq("username", username).findRowCount();
+        int usernameRowCount = User.find.query().where().eq("username", username).findCount();
         return usernameRowCount == 0;
     }
 

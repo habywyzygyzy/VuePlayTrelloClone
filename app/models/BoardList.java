@@ -1,12 +1,12 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.ebean.Finder;
+import io.ebean.Model;
 
 import javax.persistence.*;
-import javax.persistence.OrderBy;
 import java.util.List;
 import java.util.Objects;
-import io.ebean.*;
 
 @Entity
 public class BoardList extends Model {
@@ -29,7 +29,7 @@ public class BoardList extends Model {
     }
 
     public static BoardList create(Board board, String name) {
-        BoardList maxSortList = BoardList.find.orderBy("sortPosition DESC").setMaxRows(1).findUnique();
+        BoardList maxSortList = BoardList.find.query().orderBy("sortPosition DESC").setMaxRows(1).findOne();
         long nextSortPos = (maxSortList != null) ? (maxSortList.sortPosition + 1L) : 1L;
 
         BoardList list = new BoardList();
