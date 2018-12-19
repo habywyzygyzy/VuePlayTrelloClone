@@ -1,14 +1,27 @@
 <template>
-  <div class="greeting-form">
-    <h1>{{ greeting }}</h1>
-    <p>Value: {{ toggleText }}</p>
-    <our-button ref="button" @click="toggle">Toggle button</our-button>
-    <our-js-button ref="jsButton" @click="toggle">Toggle JS button</our-js-button>
-  </div>
+   <div id="app">
+      <Kanban :stages="statuses" :blocks="blocks" @update-block="updateBlock">
+        <div v-for="stage in statuses" :slot="stage" :key="stage">
+          <h2>
+            {{ stage }}
+            <a>+</a>
+          </h2>
+        </div>
+        <div v-for="item in blocks" :slot="item.id" :key="item.id">
+          <div>
+            <strong>id:</strong> {{ item.id }}
+          </div>
+          <div>
+            {{ item.title }}
+          </div>
+        </div>
+      </Kanban>
+    </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
+
 
   import { Type as OurButton } from './common/our-button.vue';
 
@@ -20,41 +33,106 @@
     testMessage(): void
   }
 
-  export default Vue.extend({
-    props: {
-      greeting: {
-        type: String,
-        required: true
-      }
-    },
-    data: function() {
-      return {
-        toggleValue: false
-      };
-    },
-    computed: {
-      toggleText(): string {
-        if (this.toggleValue) {
-          return "on";
-        } else {
-          return "off";
-        }
-      }
-    },
-    methods: {
-      toggle(): void {
-        this.toggleValue = !this.toggleValue;
-        (<OurButton>(this.$refs.button)).testMessage();
-        (<OurJsButton>(this.$refs.jsButton)).testMessage();
-      }
+</script>
+
+<script>
+import faker from 'faker';
+import { debounce } from 'lodash';
+import Kanban from './components/Kanban';
+
+Vue.use(Kanban);
+
+export default {
+  name: 'app',
+  components: {
+    Kanban,
+  },
+  data() {
+    return {
+      statuses: ['on-hold', 'in-progress', 'needs-review', 'approved'],
+      blocks: [],
+    };
+  },
+  mounted() {
+    for (let i = 0; i <= 10; i += 1) {
+      this.blocks.push({
+        id: i,
+        status: this.statuses[Math.floor(Math.random() * 4)],
+        title: faker.company.bs(),
+      });
     }
-  });
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .greeting-form {
-    display: block;
-    text-align: center;
-    padding: 25px 0px;
+  @import './assets/kanban.scss';
+
+  $on-hold: #FB7D44;
+  $in-progress: #2A92BF;
+  $needs-review: #F4CE46;
+  $approved: #00B961;
+  * {
+    box-sizing: border-box;
   }
+  body {
+    background: #33363D;
+    color: white;
+    font-family: 'Lato';
+    font-weight: 300;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .drag-column {
+    .drag-column-header > div {
+      width: 100%;
+      h2 > a {
+        float: right;
+      }
+    }
+    &-on-hold {
+      .drag-column-header,
+      .is-moved,
+      .drag-options {
+        background: $on-hold;
+      }
+    }
+    &-in-progress {
+      .drag-column-header,
+      .is-moved,
+      .drag-options {
+        background: $in-progress;
+      }
+    }
+    &-needs-review {
+      .drag-column-header,
+      .is-moved,
+      .drag-options{
+        background: $needs-review;
+      }
+    }
+    &-approved {
+      .drag-column-header,
+      .is-moved,
+      .drag-options {
+        background: $approved;
+      }
+    }
+  }
+  .section {
+    padding: 20px;
+    text-align: center;
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: 300;
+    }
+    h4 {
+      font-weight: 400;
+      a {
+        font-weight: 600;
+      }
+    }
+  }
+
 </style>
