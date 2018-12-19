@@ -3,7 +3,6 @@ package utils.other;
 
 import org.apache.commons.lang3.StringUtils;
 import play.data.Form;
-import play.i18n.Messages;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,18 +16,14 @@ public class ValidationErrorsHelper {
     public ValidationErrorsHelper(String labelPrefix, Form<?> form) {
 
         form.globalErrors().forEach(gError -> {
-            errors.add(Messages.get(gError.message(), gError.arguments().toArray()));
+            errors.add("Error");
         });
 
         form.data().forEach((field, value) ->
                 Stream.of(form.error(field)).forEach(
                         err -> {
                             if (err != null) {
-                                errors.add(
-                                        String.format("%s: %s",
-                                                Messages.get(labelPrefix + field),
-                                                Messages.get(err.message(), err.arguments().toArray()))
-                                );
+                                errors.add("Error");
 
                             }
                         }

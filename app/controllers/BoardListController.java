@@ -1,19 +1,23 @@
 package controllers;
 
-import models.BoardList;
 import models.Board;
-import models.Card;
+import models.BoardList;
 import play.data.Form;
+import play.data.FormFactory;
 import play.data.validation.Constraints;
-import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
-import io.ebean.*;
+import utils.validators.CheckStringIsLongValidator;
+
+import javax.inject.Inject;
 
 public class BoardListController extends Controller {
 
+    @Inject
+    static FormFactory formFactory;
+
     public static Result add() {
-        Form<NewList> boardForm = Form.form(NewList.class).bindFromRequest();
+        Form<NewList> boardForm = formFactory.form(NewList.class).bindFromRequest();
 
         NewList newList = boardForm.get();
         Board board = Board.find.byId(newList.boardID);
@@ -23,16 +27,17 @@ public class BoardListController extends Controller {
     }
 
     public static Result delete() {
-        String ListIDString = Form.form().bindFromRequest().get("ListID");
-        if (!checkStringIsLongValidator.isValid(ListIDString)) {
-            return badRequest(Messages.get("page.badRequest"));
+        CheckStringIsLongValidator validator = new CheckStringIsLongValidator();
+        String ListIDString = formFactory.form().bindFromRequest().get("ListID");
+        if (!validator.isValid(ListIDString)) {
+            return badRequest();
         }
 
         Long ListID = Long.parseLong(ListIDString);
         BoardList ListObj = BoardList.find.byId(ListID);
 
         if (ListObj == null) {
-            return badRequest(Messages.get("page.board.notFound"));
+            return badRequest();
         }
 
         ListObj.delete();

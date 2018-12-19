@@ -4,16 +4,19 @@ import models.Board;
 import models.User;
 import play.data.Form;
 import play.data.FormFactory;
-import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import javax.inject.Inject;
 
 import static play.data.validation.Constraints.*;
 
 public class BoardController extends Controller {
 
+    @Inject
+    static FormFactory formFactory;
+
     public static Result add() {
-        FormFactory formFactory = null;
         Form<NewBoard> boardForm = formFactory.form(NewBoard.class).bindFromRequest();
 
         Board board = Board.create(User.loggedInUser(), boardForm.get().name);
@@ -24,21 +27,20 @@ public class BoardController extends Controller {
         Board foundBoard = Board.find.byId(boardId);
 
         if (foundBoard == null) {
-            return badRequest(Messages.get("page.board.notFound"));
+            return badRequest();
         }
 
-        return ok(board.render(foundBoard));
+        return ok();
     }
 
     public static Result delete() {
-        FormFactory formFactory = null;
         String boardIDString = formFactory.form().bindFromRequest().get("boardID");
 
         Long boardId = Long.parseLong(boardIDString);
         Board boardObj = Board.find.byId(boardId);
 
         if (boardObj == null) {
-            return badRequest(Messages.get("page.board.notFound"));
+            return badRequest();
         }
 
         boardObj.delete();

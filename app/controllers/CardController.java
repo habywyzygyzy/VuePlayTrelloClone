@@ -1,18 +1,24 @@
 package controllers;
 
-import models.*;
 import models.BoardList;
+import models.Card;
 import play.data.Form;
+import play.data.FormFactory;
 import play.data.validation.Constraints;
-import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import utils.other.ValidationErrorsHelper;
+import utils.validators.CheckStringIsLongValidator;
+
+import javax.inject.Inject;
 
 public class CardController extends Controller {
 
+    @Inject
+    static FormFactory formFactory;
+
     public static Result add() {
-        Form<NewCard> cardForm = Form.form(NewCard.class).bindFromRequest();
+        Form<NewCard> cardForm = formFactory.form(NewCard.class).bindFromRequest();
 
         if (cardForm.hasErrors()) {
             return badRequest(
@@ -29,16 +35,17 @@ public class CardController extends Controller {
     }
 
     public static Result delete() {
-        String cardIdAsString = Form.form().bindFromRequest().get("cardId");
+        CheckStringIsLongValidator checkStringIsLongValidator = new CheckStringIsLongValidator();
+        String cardIdAsString = formFactory.form().bindFromRequest().get("cardId");
         if (!checkStringIsLongValidator.isValid(cardIdAsString)) {
-            return badRequest(Messages.get("page.badRequest"));
+            return badRequest();
         }
 
         Long cardId = Long.parseLong(cardIdAsString);
         Card card = Card.find.byId(cardId);
 
         if (card == null) {
-            return badRequest(Messages.get("page.board.notFound"));
+            return badRequest();
         }
 
         card.delete();

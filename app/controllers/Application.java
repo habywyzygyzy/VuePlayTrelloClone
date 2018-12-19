@@ -8,7 +8,7 @@ public class Application extends Controller {
 
     public static Result index() {
         String userID = session().getOrDefault("user.id", "null");
-        return ok(index.render("You're logged in!", userID));
+        return ok(index.render("You're logged in!" + userID));
     }
 
 }
