@@ -1,0 +1,4 @@
+2019-02-02 15:25:48 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Tabela "PLAY_EVOLUTIONS" nie istnieje
+Table "PLAY_EVOLUTIONS" not found; SQL statement:
+select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-194]
