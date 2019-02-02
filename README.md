@@ -1,5 +1,5 @@
 # VuePlayTrelloClone
-Klon strony Trello i jej podobnych.
+Web Application based on Trello
 
 ## Technologies
 * Play Framework
