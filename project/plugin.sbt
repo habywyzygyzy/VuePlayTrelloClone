@@ -10,7 +10,7 @@ resolvers += Resolver.bintrayRepo("givers", "maven")
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.20")
 
 // Integration
-addSbtPlugin("givers.vuefy" % "sbt-vuefy" % "2.0.0")
+addSbtPlugin("givers.vuefy" % "sbt-vuefy" % "4.0.0")
 
 // Play enhancer - this automatically generates getters/setters for public fields
 // and rewrites accessors of these fields to use the getters/setters. Remove this
