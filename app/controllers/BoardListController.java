@@ -41,7 +41,7 @@ public class BoardListController extends Controller {
         }
 
         ListObj.delete();
-        return redirect(controllers.routes.Application.index());
+        return redirect(controllers.routes.HomeController.index());
     }
    
     public static class NewList {

@@ -44,7 +44,7 @@ public class BoardController extends Controller {
         }
 
         boardObj.delete();
-        return redirect(controllers.routes.Application.index());
+        return redirect(controllers.routes.HomeController.index());
     }
 
     public static class NewBoard {

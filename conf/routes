@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET         /                           controllers.Application.index()
+GET         /                           controllers.HomeController.index()
 
 GET         /board/show/:id             controllers.BoardController.show(id: Long)
 POST        /board/add                  controllers.BoardController.add()

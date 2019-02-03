@@ -49,7 +49,7 @@ public class CardController extends Controller {
         }
 
         card.delete();
-        return redirect(controllers.routes.Application.index());
+        return redirect(controllers.routes.HomeController.index());
     }
 
 
