@@ -10,5 +10,4 @@ public class Application extends Controller {
         String userID = session().getOrDefault("user.id", "null");
         return ok(index.render("You're logged in!" + userID));
     }
-
 }

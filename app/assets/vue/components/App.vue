@@ -1,6 +1,8 @@
 <template>
    <div id="app">
-      <Kanban :stages="statuses" :blocks="blocks" @update-block="updateBlock">
+     <h4>TEST</h4>
+     <h1>{{ msg }}</h1>
+      <!-- <Kanban :stages="statuses" :blocks="blocks" @update-block="updateBlock">
         <div v-for="stage in statuses" :slot="stage" :key="stage">
           <h2>
             {{ stage }}
@@ -15,7 +17,7 @@
             {{ item.title }}
           </div>
         </div>
-      </Kanban>
+      </Kanban> -->
     </div>
 </template>
 
@@ -44,24 +46,25 @@ Vue.use(Kanban);
 
 export default {
   name: 'app',
-  components: {
-    Kanban,
-  },
+  // components: {
+  //   Kanban,
+  // },
   data() {
     return {
-      statuses: ['on-hold', 'in-progress', 'needs-review', 'approved'],
-      blocks: [],
+      // statuses: ['on-hold', 'in-progress', 'needs-review', 'approved'],
+      // blocks: [],
+       msg: 'Welcome to Your Vue.js App'
     };
-  },
-  mounted() {
-    for (let i = 0; i <= 10; i += 1) {
-      this.blocks.push({
-        id: i,
-        status: this.statuses[Math.floor(Math.random() * 4)],
-        title: faker.company.bs(),
-      });
-    }
-  },
+  }//,
+  // mounted() {
+  //   for (let i = 0; i <= 10; i += 1) {
+  //     this.blocks.push({
+  //       id: i,
+  //       status: this.statuses[Math.floor(Math.random() * 4)],
+  //       title: faker.company.bs(),
+  //     });
+  //   }
+  // },
 };
 </script>
 
